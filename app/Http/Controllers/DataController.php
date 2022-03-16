@@ -23,17 +23,19 @@ class DataController extends Controller
 
         $userdata = array(
             'username' => $request->get('username'),
-            'password' => $request->get('password')
+            'password' => $request->get('password'),
+            
         );
         if(Auth::attempt($userdata)){
+            // if($userdata-> id == 1){
+            //     return redirect('/admin');
+            // }
             return redirect('/admin');
         }
         else{
             return back()->with('error','Wrong login details');
         }
     }
-
-
 
    //data storing to tables:zone, region, territory
 
@@ -56,6 +58,12 @@ class DataController extends Controller
 
     public function storeRegion(Request $request){
         $region=new Region;
+
+        $this->validate($request,[
+            'zone'=>'required',
+            'rname'=>'required|max:20|min:5',
+        ]);
+
         $region->zone=$request->zone;
         $region->rname=$request->rname;
         $region->save();
@@ -67,6 +75,13 @@ class DataController extends Controller
 
     public function storeTerritories(Request $request){
         $terr=new Territory;
+
+        $this->validate($request,[
+            'zone'=>'required',
+            'region'=>'required',
+            'tname'=>'required|max:20|min:5',
+        ]);
+
         $terr->zone=$request->zone;
         $terr->region=$request->region;
         $terr->tname=$request->tname;

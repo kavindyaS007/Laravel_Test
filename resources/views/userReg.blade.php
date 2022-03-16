@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Region Registration</title>
+    <title>User Registration</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,6 +15,13 @@
     <h5><b>Welcome System Admin</b></h5>    
     <h6><?php echo date("d-m-Y"); ?></h6>
     <h2>ADD USERS</h2>
+
+    @foreach($errors->all() as $error)
+        <div class="alert alert-danger" role="alert">
+            {{$error}}
+        </div>
+    @endforeach
+    
     <form method = "post" action = "/admin/userReg">
         {{csrf_field()}}
 
@@ -49,9 +56,9 @@
         <div class="form-group">
             <label for="territory">Territory:</label>
             <Select class="form-control" name="territory">
-                <option value="t1">t1</option>
-                <option value="t2">t2</option>
-                <option value="t3">t3</option>
+                @foreach($territories as $territory)
+                    <option value="{{$territory->tcode}}">{{$territory->tname}}</option>
+                @endforeach
             </Select>
         </div>
         <div class="form-group">

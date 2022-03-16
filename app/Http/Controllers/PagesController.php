@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Zone;
 use App\Models\Region;
+use App\Models\Territory;
 use App\Models\NewUser;
 
 class PagesController extends Controller
@@ -45,7 +46,9 @@ class PagesController extends Controller
     }
 
     public function userReg(){
-        return view('userReg');
+        $user=new Territory;
+        $data=Territory::all();
+        return view('userReg')->with('territories',$data);
     }
     public function productReg(){
         return view('productReg');

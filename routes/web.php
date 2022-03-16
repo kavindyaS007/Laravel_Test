@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\DataController;
-
+use App\Http\Controllers\UserDataController;
 
 
 
@@ -46,3 +46,4 @@ Route::get('/user/viewPO',[PagesController::class, 'viewPOuser']);
 Route::post('/admin/zoneReg',[DataController::class, 'storeZone']);
 Route::post('/admin/regionReg',[DataController::class, 'storeRegion']);
 Route::post('/admin/territoryReg',[DataController::class, 'storeTerritories']);
+Route::post('/admin/userReg',[UserDataController::class, 'storeUsers']);

@@ -16,6 +16,12 @@
     @if(!isset(Auth::user()->username))
         <script>window.location = "/";</script>
     @endif
+
+    @foreach($errors->all() as $error)
+        <div class="alert alert-danger" role="alert">
+            {{$error}}
+        </div>
+    @endforeach
     
     <form method = "post" action = "">
     {{csrf_field()}}

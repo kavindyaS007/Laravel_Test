@@ -11,6 +11,13 @@
     @if(!isset(Auth::user()->username))
         <script>window.location = "/";</script>
     @endif
+
+    @foreach($errors->all() as $error)
+        <div class="alert alert-danger" role="alert">
+            {{$error}}
+        </div>
+    @endforeach
+    
 <div class="container">
     <h5><b>Welcome System Admin</b></h5>    
     <h6><?php echo date("d-m-Y"); ?></h6>
