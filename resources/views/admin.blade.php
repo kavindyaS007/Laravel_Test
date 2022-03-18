@@ -28,6 +28,7 @@
             <li><a href ="/admin/territoryReg">Add Territory</a></li>
             <li><a href ="/admin/userReg">Add User</a></li>
             <li><a href ="/admin/productReg">Add Product</a></li>
+            <li><a href ="/admin/addStock">Add Stock</a></li>
         </ul>
     </form>
 </div>

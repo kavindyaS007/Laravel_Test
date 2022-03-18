@@ -13,6 +13,8 @@
     <h6><?php echo date("d-m-Y"); ?></h6>
     <h2>Add Territory</h2>
 
+    
+
     @if(!isset(Auth::user()->username))
         <script>window.location = "/";</script>
     @endif
@@ -27,7 +29,7 @@
     {{csrf_field()}}
         <div class="form-group">
             <label for="zone">Zone:</label>
-            <Select class="form-control" name="zone">
+            <Select class="form-control" name="zone" id="zone">
                 @foreach($zones as $zone)
                     <option value="{{$zone->zcode}}">{{$zone->zcode}} - {{$zone->zshortdes}}</option>
                 @endforeach
@@ -37,7 +39,7 @@
             <label for="region">Region:</label>
             <Select class="form-control" name="region">
                 @foreach($regions as $region)
-                    <option value="{{$region->rcode}}">{{$region->rname}} - {{$region->zone}}</option>
+                    <option value="{{$region->rcode}}">{{$region->zone}} - {{$region->rname}}</option>
                 @endforeach
             </Select>
         </div>

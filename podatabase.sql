@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2022 at 11:14 AM
+-- Generation Time: Mar 18, 2022 at 05:23 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -61,7 +61,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2022_03_12_143817_create_zones_table', 1),
 (6, '2022_03_12_173408_create_regions_table', 2),
 (7, '2022_03_13_183433_create_territories_table', 3),
-(8, '2022_03_15_052348_create_new_users_table', 4);
+(8, '2022_03_15_052348_create_new_users_table', 4),
+(9, '2022_03_16_073527_create_products_table', 5),
+(10, '2022_03_17_094635_add_quantity_to_products_table', 6),
+(11, '2022_03_17_124308_create_podetails_table', 7),
+(12, '2022_03_17_124337_create_pomoredetails_table', 7);
 
 -- --------------------------------------------------------
 
@@ -91,7 +95,11 @@ CREATE TABLE `new_users` (
 --
 
 INSERT INTO `new_users` (`id`, `name`, `nic`, `address`, `mobile`, `email`, `email_verified_at`, `gender`, `territory`, `username`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Manager', ' ', ' ', ' ', ' ', NULL, 'male', 0, 'Admin001', '$2y$10$WUGP3.vh0wOAmq9FFIowe.4aJ6RHKYf7Gw/Yu0eR60h/mQmO9WWbu', NULL, '2022-03-15 00:44:51', '2022-03-15 00:44:51');
+(1, 'Manager', ' ', ' ', ' ', ' ', NULL, 'male', 0, 'Admin001', '$2y$10$WUGP3.vh0wOAmq9FFIowe.4aJ6RHKYf7Gw/Yu0eR60h/mQmO9WWbu', NULL, '2022-03-15 00:44:51', '2022-03-15 00:44:51'),
+(2, 'Kavindya', '967872199V', 'Negombo', '0712323233', 'kavi@gmail.com', NULL, 'female', 1, 'kavi007', 'kavi7@', NULL, '2022-03-15 20:59:13', '2022-03-15 20:59:13'),
+(3, 'geetha', '121212345V', 'daluwakotuwa', '1212131412', 'qwe@gmail.com', NULL, 'female', 2, 'geetha12', 'geetha12@', NULL, '2022-03-15 21:18:48', '2022-03-15 21:18:48'),
+(4, 'kavindya', '967872199v', 'negombo', '1212121212', 'aqw@test.lkk', NULL, 'female', 3, 'kavi123', 'kavi123@', NULL, '2022-03-16 01:47:48', '2022-03-16 01:47:48'),
+(5, 'ruwan', '1212121212', 'rathmalana', '2334455612', 'ru@test.lk', NULL, 'male', 5, 'ru123@#', 'ru123@#$', NULL, '2022-03-17 05:16:26', '2022-03-17 05:16:26');
 
 -- --------------------------------------------------------
 
@@ -126,6 +134,76 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `podetails`
+--
+
+CREATE TABLE `podetails` (
+  `poNo` bigint(20) UNSIGNED NOT NULL,
+  `zone` int(11) NOT NULL,
+  `region` int(11) NOT NULL,
+  `territory` int(11) NOT NULL,
+  `distributor` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `remark` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `totalPrice` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `podetails`
+--
+
+INSERT INTO `podetails` (`poNo`, `zone`, `region`, `territory`, `distributor`, `date`, `remark`, `totalPrice`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 2, '2022-03-17', '25 packets', 0, '2022-03-17 13:27:01', '2022-03-17 13:27:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pomoredetails`
+--
+
+CREATE TABLE `pomoredetails` (
+  `poid` bigint(20) UNSIGNED NOT NULL,
+  `poNO` int(11) NOT NULL,
+  `skuid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `skuid` bigint(20) UNSIGNED NOT NULL,
+  `skucode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mpname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mrp` int(11) NOT NULL,
+  `distPrice` int(11) NOT NULL,
+  `weight` int(11) NOT NULL,
+  `unit` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`skuid`, `skucode`, `mpname`, `mrp`, `distPrice`, `weight`, `unit`, `created_at`, `updated_at`, `quantity`) VALUES
+(1, 'ABC 001', 'Anchor', 450, 500, 400, 'gram', '2022-03-17 00:32:06', '2022-03-17 00:32:06', 0),
+(3, 'ABC 002', 'Raththi', 350, 400, 400, 'gram', '2022-03-17 01:09:58', '2022-03-17 01:09:58', 0),
+(4, 'XYZ 001', 'maliban', 200, 150, 250, 'gram', '2022-03-17 05:37:06', '2022-03-17 05:37:06', 50);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `regions`
 --
 
@@ -150,7 +228,9 @@ INSERT INTO `regions` (`zone`, `rcode`, `rname`, `created_at`, `updated_at`) VAL
 (6, 6, 'region 2 neg', '2022-03-13 11:50:28', '2022-03-13 11:50:28'),
 (6, 7, 'region 2 neg', '2022-03-13 11:51:04', '2022-03-13 11:51:04'),
 (6, 8, 'region 2 neg', '2022-03-13 11:51:31', '2022-03-13 11:51:31'),
-(9, 9, 'Ceylon Linux', '2022-03-15 04:12:44', '2022-03-15 04:12:44');
+(9, 9, 'Ceylon Linux', '2022-03-15 04:12:44', '2022-03-15 04:12:44'),
+(10, 10, 'region123', '2022-03-16 01:43:02', '2022-03-16 01:43:02'),
+(3, 11, 'region pitipana', '2022-03-17 05:13:24', '2022-03-17 05:13:24');
 
 -- --------------------------------------------------------
 
@@ -173,7 +253,10 @@ CREATE TABLE `territories` (
 
 INSERT INTO `territories` (`zone`, `region`, `tcode`, `tname`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'srm12', '2022-03-13 13:26:01', '2022-03-13 13:26:01'),
-(9, 9, 2, 'HR', '2022-03-15 04:14:04', '2022-03-15 04:14:04');
+(9, 9, 2, 'HR', '2022-03-15 04:14:04', '2022-03-15 04:14:04'),
+(1, 1, 3, 'terr12', '2022-03-16 01:45:18', '2022-03-16 01:45:18'),
+(1, 1, 4, 'test terri', '2022-03-17 05:14:20', '2022-03-17 05:14:20'),
+(3, 11, 5, 'broadcast', '2022-03-17 05:14:51', '2022-03-17 05:14:51');
 
 -- --------------------------------------------------------
 
@@ -219,7 +302,8 @@ INSERT INTO `zones` (`zcode`, `zlongdes`, `zshortdes`, `created_at`, `updated_at
 (6, 'zone negombo', 'zone-neg', '2022-03-13 07:46:47', '2022-03-13 07:46:47'),
 (7, 'zone - rathnapura', 'zrath', '2022-03-13 09:18:24', '2022-03-13 09:18:24'),
 (8, 'zone 010 colombo', 'z010', '2022-03-13 09:19:31', '2022-03-13 09:19:31'),
-(9, 'Zone - Baththaramulla', 'zBat', '2022-03-15 04:11:54', '2022-03-15 04:11:54');
+(9, 'Zone - Baththaramulla', 'zBat', '2022-03-15 04:11:54', '2022-03-15 04:11:54'),
+(10, 'test00123', 'te1', '2022-03-16 01:42:14', '2022-03-16 01:42:14');
 
 --
 -- Indexes for dumped tables
@@ -260,6 +344,25 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `podetails`
+--
+ALTER TABLE `podetails`
+  ADD PRIMARY KEY (`poNo`);
+
+--
+-- Indexes for table `pomoredetails`
+--
+ALTER TABLE `pomoredetails`
+  ADD PRIMARY KEY (`poid`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`skuid`),
+  ADD UNIQUE KEY `products_skucode_unique` (`skucode`);
+
+--
 -- Indexes for table `regions`
 --
 ALTER TABLE `regions`
@@ -298,13 +401,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `new_users`
 --
 ALTER TABLE `new_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -313,16 +416,34 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `podetails`
+--
+ALTER TABLE `podetails`
+  MODIFY `poNo` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pomoredetails`
+--
+ALTER TABLE `pomoredetails`
+  MODIFY `poid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `skuid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `regions`
 --
 ALTER TABLE `regions`
-  MODIFY `rcode` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `rcode` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `territories`
 --
 ALTER TABLE `territories`
-  MODIFY `tcode` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tcode` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -334,7 +455,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `zones`
 --
 ALTER TABLE `zones`
-  MODIFY `zcode` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `zcode` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

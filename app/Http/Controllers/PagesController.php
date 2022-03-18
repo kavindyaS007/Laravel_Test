@@ -8,6 +8,7 @@ use App\Models\Zone;
 use App\Models\Region;
 use App\Models\Territory;
 use App\Models\NewUser;
+use App\Models\Product;
 
 class PagesController extends Controller
 {
@@ -57,10 +58,34 @@ class PagesController extends Controller
     public function viewPOadmin(){
         return view('viewPO');
     }
+    public function addStock(){
+        // return view('viewPO');
+        echo "increase quantity";
+    }
+
 
 //user activities
     public function addPOuser(){
-        return view('addPOuser');
+        $zone=new Zone;
+        $data=Zone::all();
+
+        $region=new Region;
+        $data1=Region::all();
+
+        $terr=new Territory;
+        $data2=Territory::all();
+
+        $user=new NewUser;
+        $data3=NewUser::all();
+
+        $product=new Product;
+        $data4=Product::all();
+
+        return view('addPOuser')->with('zones',$data)
+        ->with('regions',$data1)
+        ->with('territories',$data2)
+        ->with('new_users', $data3)
+        ->with('products', $data4);
     }
 
     public function viewPOuser(){

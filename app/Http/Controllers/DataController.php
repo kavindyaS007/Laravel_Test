@@ -24,13 +24,12 @@ class DataController extends Controller
         $userdata = array(
             'username' => $request->get('username'),
             'password' => $request->get('password'),
-            
         );
         if(Auth::attempt($userdata)){
-            // if($userdata-> id == 1){
+            // if($userdata->username == 'Admin001'){
             //     return redirect('/admin');
             // }
-            return redirect('/admin');
+           return redirect('/admin');
         }
         else{
             return back()->with('error','Wrong login details');
@@ -43,7 +42,7 @@ class DataController extends Controller
         $zone=new Zone;
        
         $this->validate($request,[
-            'zLdescription'=>'required|max:100|min:5',
+            'zLdescription'=>'required|max:100',
             'zSdescription'=>'required|max:5|min:1',
         ]);
 
@@ -61,7 +60,7 @@ class DataController extends Controller
 
         $this->validate($request,[
             'zone'=>'required',
-            'rname'=>'required|max:20|min:5',
+            'rname'=>'required|max:20',
         ]);
 
         $region->zone=$request->zone;
@@ -79,7 +78,7 @@ class DataController extends Controller
         $this->validate($request,[
             'zone'=>'required',
             'region'=>'required',
-            'tname'=>'required|max:20|min:5',
+            'tname'=>'required|max:20',
         ]);
 
         $terr->zone=$request->zone;
@@ -89,6 +88,7 @@ class DataController extends Controller
 
         $terr=new Zone;
         $data=Zone::all();
+        
         $terr=new Region;
         $data1=Region::all();
         return view('territoryReg')->with('zones',$data)->with('regions',$data1);

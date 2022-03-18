@@ -7,6 +7,9 @@ use App\Models\Zone;
 use App\Models\Region;
 use App\Models\Territory;
 use App\Models\NewUser;
+use App\Models\Product;
+
+//use App\Helpers\Helper;
 
 use Validator;
 use Auth;
@@ -42,5 +45,40 @@ class UserDataController extends Controller
         $user=new Territory;
         $data=Territory::all();
         return view('userReg')->with('territories',$data);
+    }
+
+    public function storeProduct(Request $request){
+        $product = new Product;
+
+        $product->skucode=$request->skucode;
+        $product->mpname=$request->mpname;
+        $product->mrp=$request->mrp;
+        $product->distPrice=$request->distPrice;
+        $product->weight=$request->weight;
+        $product->unit=$request->unit;
+        $product->quantity=$request->quantity;
+
+        $product->save();
+
+        return view('productReg');
+    }
+
+    public function addPO(Request $request){
+        $zone=new Zone;
+        $data=Zone::all();
+
+        $region=new Region;
+        $data1=Region::all();
+
+        $terr=new Territory;
+        $data2=Territory::all();
+
+        $user=new NewUser;
+        $data3=NewUser::all();
+
+        return view('territoryReg')->with('zones', $data)
+        ->with('regions', $data1)
+        ->with('territories', $data2)
+        ->with('new_users', $data3);
     }
 }

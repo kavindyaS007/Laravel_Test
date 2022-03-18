@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\UserDataController;
-
+use App\Http\Controllers\orderController;
 
 
 // Route::get('/home', function () {
@@ -36,6 +36,8 @@ Route::get('/admin/productReg',[PagesController::class, 'productReg']);
 
 Route::get('/admin/viewPO',[PagesController::class, 'viewPOadmin']);
 
+Route::get('/admin/addStock',[PagesController::class, 'addStock']);
+
 //routes as user
 
 Route::get('/user/addPO',[PagesController::class, 'addPOuser']);
@@ -46,4 +48,8 @@ Route::get('/user/viewPO',[PagesController::class, 'viewPOuser']);
 Route::post('/admin/zoneReg',[DataController::class, 'storeZone']);
 Route::post('/admin/regionReg',[DataController::class, 'storeRegion']);
 Route::post('/admin/territoryReg',[DataController::class, 'storeTerritories']);
+
 Route::post('/admin/userReg',[UserDataController::class, 'storeUsers']);
+Route::post('/admin/productReg',[UserDataController::class, 'storeProduct']);
+
+Route::post('/user/addPO',[orderController::class, 'storePO']);
