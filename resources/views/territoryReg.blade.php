@@ -25,11 +25,12 @@
         </div>
     @endforeach
     
-    <form method = "post" action = "">
+    <form method = "post" action = "/admin/territoryReg">
     {{csrf_field()}}
         <div class="form-group">
             <label for="zone">Zone:</label>
-            <Select class="form-control" name="zone" id="zone">
+            <Select class="zoneclass form-control" name="zone" id="zone">
+                <option value="0" disabled="true" selected="true">-Select Zone-</option>
                 @foreach($zones as $zone)
                     <option value="{{$zone->zcode}}">{{$zone->zcode}} - {{$zone->zshortdes}}</option>
                 @endforeach
@@ -37,7 +38,8 @@
         </div>
         <div class="form-group">
             <label for="region">Region:</label>
-            <Select class="form-control" name="region">
+            <Select class="regionclass form-control" name="region" id="region">
+                <option value="0" disabled="true" selected="true">-Select Region-</option>
                 @foreach($regions as $region)
                     <option value="{{$region->rcode}}">{{$region->zone}} - {{$region->rname}}</option>
                 @endforeach
@@ -55,6 +57,9 @@
         <a href="/admin" class="btn btn-primary">BACK</a>
     </form>
 </div>
+
+
+
 
 </body>
 </html>

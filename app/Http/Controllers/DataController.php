@@ -26,10 +26,12 @@ class DataController extends Controller
             'password' => $request->get('password'),
         );
         if(Auth::attempt($userdata)){
-            // if($userdata->username == 'Admin001'){
-            //     return redirect('/admin');
+            if($userdata['username']=='Admin001'){
+                return redirect('/admin');
+            }
+            // elseif($userdata['username']=='kavi007'){
+            //     return redirect('/user/addPO');
             // }
-           return redirect('/admin');
         }
         else{
             return back()->with('error','Wrong login details');
@@ -93,4 +95,6 @@ class DataController extends Controller
         $data1=Region::all();
         return view('territoryReg')->with('zones',$data)->with('regions',$data1);
     }
+
+    
 }

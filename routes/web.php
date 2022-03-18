@@ -7,6 +7,7 @@ use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\orderController;
 
 
+
 // Route::get('/home', function () {
 //     return view('welcome');
 // });
@@ -43,6 +44,7 @@ Route::get('/admin/addStock',[PagesController::class, 'addStock']);
 Route::get('/user/addPO',[PagesController::class, 'addPOuser']);
 
 Route::get('/user/viewPO',[PagesController::class, 'viewPOuser']);
+Route::post('/user/viewPO',[orderController::class, 'viewPOuser']);
 
 
 Route::post('/admin/zoneReg',[DataController::class, 'storeZone']);

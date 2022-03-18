@@ -12,17 +12,27 @@
     <h5><b>Welcome System Admin</b></h5>    
     <h6><?php echo date("d-m-Y"); ?></h6>
     <h3>ADD INDIVIDUAL PURCHASE ORDER</h3>
-    <form method = "post" action = "">
+    <form method = "post" action = "/user/viewPO">
         {{csrf_field()}}
 
         <div class="row">
             <div class="col-md-2 form-group">
-                <label for="rcode">Region </label>
-                <input type="number" class="form-control" name="rcode">
+                <label for="region">Region </label>
+                <Select class="form-control" name="region">
+                    <option value="">zone id - region name - region code</option>
+                    @foreach($regions as $region)
+                        <option value="{{$region->rcode}}">{{$region->zone}} - {{$region->rname}} - {{$region->rcode}}</option>
+                    @endforeach
+                </Select>
             </div>
             <div class="col-md-2 form-group">
-                <label for="tcode">Territory </label>
-                <input type="number" class="form-control" name="tcode">
+                <label for="territory">Territory </label>
+                <Select class="form-control" name="territory">
+                <option value="">region code - territory name - territory code</option>
+                    @foreach($territories as $territory)
+                        <option value="{{$territory->tcode}}">{{$territory->region}} - {{$territory->tname}} - {{$territory->tcode}}</option>
+                    @endforeach
+                </Select> 
             </div>
             <div class="col-md-2 form-group">
                 <label for="ponum">PO No </label>
@@ -37,7 +47,7 @@
                 <input type="date" class="form-control" name="tdate">
             </div>
         </div>
-        <input type="submit" class="btn btn-success" value="VIEW PO">
+        <!-- <input type="submit" class="btn btn-success" value="VIEW PO"> -->
 
         <div>
             <table class="table">
@@ -52,9 +62,20 @@
                     <th>VIEW PO</th>
                 </tr></thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
+                    
+                    @foreach($podetails as $podetail)
+                        <tr>
+                            <td>{{$podetail->region}}</td>
+                            <td>{{$podetail->territory}}</td>
+                            <td>{{$podetail->distributor}}</td>
+                            <td>{{$podetail->poNo}}</td>
+                            <td>{{$podetail->date}}</td>
+                            <td></td>
+                            <td>{{$podetail->totalPrice}}</td>
+                            <td><button >VIEW</button></td>
+                        </tr>
+
+                    @endforeach    
                 </tbody>
             </table>
         </div>

@@ -9,6 +9,7 @@ use App\Models\Region;
 use App\Models\Territory;
 use App\Models\NewUser;
 use App\Models\Product;
+use App\Models\podetails;
 
 class PagesController extends Controller
 {
@@ -89,7 +90,18 @@ class PagesController extends Controller
     }
 
     public function viewPOuser(){
-        return view('viewPO');
+        $region=new Region;
+        $data1=Region::all();
+
+        $terr=new Territory;
+        $data2=Territory::all();
+
+        $po=new podetails;
+        $data3=podetails::all();
+
+        return view('viewPO')->with('regions',$data1)
+        ->with('territories',$data2)
+        ->with('podetails',$data3);
     }
     
 }
