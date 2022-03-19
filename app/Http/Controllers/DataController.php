@@ -29,9 +29,9 @@ class DataController extends Controller
             if($userdata['username']=='Admin001'){
                 return redirect('/admin');
             }
-            // elseif($userdata['username']=='kavi007'){
-            //     return redirect('/user/addPO');
-            // }
+            else{
+                 return redirect('/user/addPO');
+            }
         }
         else{
             return back()->with('error','Wrong login details');

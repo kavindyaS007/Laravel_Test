@@ -76,7 +76,7 @@
                     <th>UNIT PRICE</th>
                     <th>AVB QTY</th>
                     <th>ENTER QTY</th>
-                    <th>UNITS</th>
+                    <!-- <th>UNITS</th> -->
                     <th>TOTAL PRICE</th>
                 </tr></thead>
                 <tbody>
@@ -91,7 +91,7 @@
                             <td><input type="number" name="avbqty" id="avbqty<?php echo $no; ?>" value="{{$product->quantity}}" readonly></td>
                             <td><input type="number" name="qty" id="qty<?php echo $no; ?>" value="" oninput="UpdateItem('{{$no}}','{{$total}}')"></td>
                             
-                            <td><input type="number" name="units" id="units<?php echo $no;?>" value="{{$product->units}}" onchange="" readonly></td>
+                            <!-- <td><input type="number" name="units" id="units<?php echo $no;?>" value="{{$product->units}}" onchange="" readonly></td> -->
                             <td><input type="number" name="price" id="price<?php echo $no;?>" value="" onchange="" readonly></td>
                             <input type="hidden" name="weight" id="weight<?php echo $no;?>" value="{{$product->weight}}">
                         </tr>
@@ -99,7 +99,7 @@
                     @endforeach
                     @endif
                     <tr>
-                        <td></td><td></td><td></td><td></td><td></td><th>Total Order Price :</th>
+                        <td></td><td></td><td></td><td></td><th>Total Order Price :</th>
                         <td><input type="text" id="totalPrice" name="totalPrice" value="" readonly></td>
                     </tr>
                 </tbody>

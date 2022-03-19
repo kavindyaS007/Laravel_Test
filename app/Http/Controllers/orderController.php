@@ -23,8 +23,6 @@ class orderController extends Controller
         $po->date=date("Y-m-d");
         $po->remark=$request->remark;
         $po->totalPrice=$request->totalPrice;
-
-        $qty=$request->qty;
         
         $po->save();
 
@@ -45,7 +43,12 @@ class orderController extends Controller
         $data3=NewUser::all();
 
         $product=new Product;
-        // $product->skucode=$product->skucode;
+        $qty=$request->qty;
+        $avbqty = $product->quantity;
+        $avbqty = ($avbqty - $qty);
+        $skucode=$request->skucode;
+        // Page::where('id', $id)->update(array('image' => 'asdasd'));
+        Product::where('skucode',$skucode)->update(array('quantity' => $avbqty));
         // $product->quantity=$product->quantity - $qty;
         // $product->save();
         $data4=Product::all();

@@ -57,22 +57,30 @@
                     <th>DISTRIBUTOR</th>
                     <th>PO NUMBER</th>
                     <th>DATE</th>
-                    <th>TIME</th>
+                    <!-- <th>TIME</th> -->
                     <th>TOTAL AMOUNT</th>
                     <th>VIEW PO</th>
                 </tr></thead>
                 <tbody>
                     
                     @foreach($podetails as $podetail)
+                        <tr class="bg-info">
+                            <td class="bg-info">{{$podetail->region}}</td>
+                            <td class="bg-info">{{$podetail->territory}}</td>
+                            <td class="bg-info">{{$podetail->distributor}}</td>
+                            <td class="bg-info">{{$podetail->poNo}}</td>
+                            <td class="bg-info">{{$podetail->date}}</td>
+                            <!-- <td></td> -->
+                            <td class="bg-info">{{$podetail->totalPrice}}</td>
+                            <td class="bg-info"><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">VIEW</a></td>
+                        </tr>
                         <tr>
-                            <td>{{$podetail->region}}</td>
-                            <td>{{$podetail->territory}}</td>
-                            <td>{{$podetail->distributor}}</td>
-                            <td>{{$podetail->poNo}}</td>
-                            <td>{{$podetail->date}}</td>
-                            <td></td>
-                            <td>{{$podetail->totalPrice}}</td>
-                            <td><button >VIEW</button></td>
+                        <td><div >
+                            <div class="card card-body">
+                                PO no : {{$podetail->poNo}} <br/>
+                                Total Amount : {{$podetail->totalPrice}}                           
+                            </div>
+                        </div></td>
                         </tr>
 
                     @endforeach    
